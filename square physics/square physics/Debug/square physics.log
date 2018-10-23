@@ -1,0 +1,4 @@
+﻿  Game.cpp
+c:\users\c00227505\desktop\square physics\square physics\game.h(39): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\c00227505\desktop\square physics\square physics\game.cpp(38): warning C4244: '-=': conversion from 'const double' to 'sf::Int32', possible loss of data
+  square physics.vcxproj -> C:\Users\c00227505\Desktop\square physics\Debug\square physics.exe
