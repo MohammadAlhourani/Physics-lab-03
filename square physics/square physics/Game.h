@@ -2,21 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 
-/// <summary>
-/// @author RP
-/// @date June 2017
-/// @version 1.0
-/// 
-/// </summary>
-
-/// <summary>
-/// @brief Main class for the SFML Playground project.
-/// 
-/// This will be a single class framework for learning about SFML. 
-/// Example usage:
-///		Game game;
-///		game.run();
-/// </summary>
 
 class Game
 {
@@ -27,6 +12,8 @@ public:
 	/// </summary>
 	Game();
 	void Normalise();
+
+	sf::Vector2f multiply(sf::Vector2f t_vector1 , sf::Vector2f t_vector2);
 
 	sf::RectangleShape Square;
 	sf::RectangleShape Ground;
@@ -41,6 +28,7 @@ public:
 
 	sf::Vector2f Acceleration{ 0.0,0.0 };
 
+	sf::Vector2f normVel{ 0.0f,0.0f };
 
 
 	/// <summary>

@@ -20,7 +20,15 @@ Game::Game()
 
 void Game::Normalise()
 {
-	Acceleration.x = Acceleration.x / sqrt(Acceleration.x * Acceleration.x + Acceleration.y + Acceleration.y);
+	normVel.x = Velocity.x / sqrt(Velocity.x * Velocity.x + Velocity.y * Velocity.y);
+	normVel.y = Velocity.y / sqrt(Velocity.x * Velocity.x + Velocity.y * Velocity.y);
+}
+
+sf::Vector2f Game::multiply(sf::Vector2f t_vector1, sf::Vector2f t_vector2)
+{
+	sf::Vector2f temp = sf::Vector2f(t_vector1.x * t_vector2.x, t_vector1.y * t_vector2.y);
+
+	return temp;
 }
 
 ////////////////////////////////////////////////////////////
@@ -101,8 +109,17 @@ void Game::update(double dt)
 	else
 	{
 		Velocity.y = -(restitiution * Velocity.y);
-		Square.setPosition(Square.getPosition() + (Velocity * time));
+
+		Acceleration = (-restitiution * multiply(gravity, normVel));
+
+		Normalise();
+
+		Square.setPosition(Square.getPosition() + (Velocity* time) + (0.5f * Acceleration * (time * time)));
+		Velocity = Velocity + (Acceleration * time);
 	}
+
+	
+	
 }
 
 ////////////////////////////////////////////////////////////
