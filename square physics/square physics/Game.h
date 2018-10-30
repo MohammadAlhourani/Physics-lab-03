@@ -18,7 +18,7 @@ public:
 	sf::RectangleShape Square;
 	sf::RectangleShape Ground;
 
-	const sf::Vector2f gravity{ 0.0f, 9.81f };
+	 sf::Vector2f gravity{ 0.0f, 9.81f };
 
 	sf::Vector2f Velocity{ 0.0,0.0 };
 

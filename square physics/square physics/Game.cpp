@@ -16,6 +16,8 @@ Game::Game()
 	Ground.setSize(sf::Vector2f(800, 150));
 	Ground.setPosition(sf::Vector2f(0,650));
 	Ground.setFillColor(sf::Color::Green);
+
+	gravity = 5.0f * gravity;
 }
 
 void Game::Normalise()
@@ -85,7 +87,7 @@ void Game::processGameEvents(sf::Event& event)
 			Velocity = sf::Vector2f(0, 150);
 			break;
 		case sf::Keyboard::X:
-			Velocity = sf::Vector2f(50, 0);
+			Velocity = sf::Vector2f(150, 0);
 			break;
 		case sf::Keyboard::D:
 			break;
@@ -101,6 +103,8 @@ void Game::processGameEvents(sf::Event& event)
 ////////////////////////////////////////////////////////////
 void Game::update(double dt)
 {
+	time =dt/10000;
+
 	if (Square.getGlobalBounds().intersects(Ground.getGlobalBounds()) == false)
 	{
 		Square.setPosition(Square.getPosition() + (Velocity * time) + (0.5f * gravity * (time * time)));
@@ -109,10 +113,10 @@ void Game::update(double dt)
 	else
 	{
 		Velocity.y = -(restitiution * Velocity.y);
-
-		Acceleration = (-restitiution * multiply(gravity, normVel));
-
 		Normalise();
+		Acceleration = -restitiution * gravity.y * normVel;
+
+		
 
 		Square.setPosition(Square.getPosition() + (Velocity* time) + (0.5f * Acceleration * (time * time)));
 		Velocity = Velocity + (Acceleration * time);
