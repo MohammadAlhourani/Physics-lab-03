@@ -7,7 +7,7 @@ static double const MS_PER_UPDATE = 10.0;
 
 ////////////////////////////////////////////////////////////
 Game::Game()
-	: m_window(sf::VideoMode(800, 800, 32), "SFML Playground", sf::Style::Default)
+	: m_window(sf::VideoMode(800, 800, 32), "physics!", sf::Style::Default)
 {
 	Square.setSize(sf::Vector2f(10, 10));
 	Square.setPosition(sf::Vector2f(400, 600));
@@ -83,15 +83,14 @@ void Game::processGameEvents(sf::Event& event)
 		case sf::Keyboard::Escape:
 			m_window.close();
 			break;
-		case sf::Keyboard::Y:
+		case sf::Keyboard::W:
 			Velocity = sf::Vector2f(0, 150);
 			break;
-		case sf::Keyboard::X:
+		case sf::Keyboard::D:
 			Velocity = sf::Vector2f(150, 0);
 			break;
-		case sf::Keyboard::D:
-			break;
 		case sf::Keyboard::A:
+			Velocity = sf::Vector2f(-150, 0);
 			break;
 		default:
 			break;
@@ -122,7 +121,10 @@ void Game::update(double dt)
 		Velocity = Velocity + (Acceleration * time);
 	}
 
-	
+	if (Square.getPosition().x > 800 || Square.getPosition().x < 0)
+	{
+		Velocity = -1.0f * Velocity ;
+	}
 	
 }
 
