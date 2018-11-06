@@ -10,7 +10,7 @@ Game::Game()
 	: m_window(sf::VideoMode(800, 800, 32), "physics!", sf::Style::Default)
 {
 	Square.setSize(sf::Vector2f(10, 10));
-	Square.setPosition(sf::Vector2f(400, 600));
+	Square.setPosition(sf::Vector2f(400, 645));
 	Square.setOrigin(5, 5);
 
 	Ground.setSize(sf::Vector2f(800, 150));
@@ -18,6 +18,15 @@ Game::Game()
 	Ground.setFillColor(sf::Color::Green);
 
 	gravity = 5.0f * gravity;
+
+	if (Font.loadFromFile("ariblk.ttf"))
+	{
+		timerText.setFont(Font);
+	}
+
+	timerText.setCharacterSize(15);
+	timerText.setPosition(10, 20);
+	timerText.setFillColor(sf::Color::White);
 }
 
 void Game::Normalise()
@@ -85,12 +94,20 @@ void Game::processGameEvents(sf::Event& event)
 			break;
 		case sf::Keyboard::W:
 			Velocity = sf::Vector2f(0, 150);
+			timer = 0;
 			break;
 		case sf::Keyboard::D:
 			Velocity = sf::Vector2f(150, 0);
+			timer = 0;
 			break;
 		case sf::Keyboard::A:
 			Velocity = sf::Vector2f(-150, 0);
+			timer = 0;
+			break;
+		case sf::Keyboard::S:
+			Square.setPosition(400, 645);
+			Velocity = sf::Vector2f(0, 0);
+			timer = 0;
 			break;
 		default:
 			break;
@@ -115,8 +132,6 @@ void Game::update(double dt)
 		Normalise();
 		Acceleration = -restitiution * gravity.y * normVel;
 
-		
-
 		Square.setPosition(Square.getPosition() + (Velocity* time) + (0.5f * Acceleration * (time * time)));
 		Velocity = Velocity + (Acceleration * time);
 	}
@@ -126,6 +141,12 @@ void Game::update(double dt)
 		Velocity = -1.0f * Velocity ;
 	}
 	
+	if (Velocity.x > 0.1 ||  Velocity.x < -0.1 ) 
+	{
+		timer += time;
+	}
+
+	timerText.setString("Time = " + (std::to_string(timer)));
 }
 
 ////////////////////////////////////////////////////////////
@@ -134,8 +155,10 @@ void Game::render()
 	
 	m_window.clear(sf::Color(0, 0, 0, 0));
 
-	m_window.draw(Square);
+	
 	m_window.draw(Ground);
+	m_window.draw(Square);
+	m_window.draw(timerText);
 
 	m_window.display();
 }

@@ -1,5 +1,5 @@
 ﻿  Game.cpp
-c:\users\c00227505\documents\github\physics-lab-03\square physics\square physics\game.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\c00227505\documents\github\physics-lab-03\square physics\square physics\game.cpp(53): warning C4244: '-=': conversion from 'const double' to 'sf::Int32', possible loss of data
-c:\users\c00227505\documents\github\physics-lab-03\square physics\square physics\game.cpp(105): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\c00227505\documents\github\physics-lab-03\square physics\square physics\game.h(29): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\c00227505\documents\github\physics-lab-03\square physics\square physics\game.cpp(62): warning C4244: '-=': conversion from 'const double' to 'sf::Int32', possible loss of data
+c:\users\c00227505\documents\github\physics-lab-03\square physics\square physics\game.cpp(122): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   square physics.vcxproj -> C:\Users\c00227505\Documents\GitHub\Physics-lab-03\square physics\Debug\square physics.exe

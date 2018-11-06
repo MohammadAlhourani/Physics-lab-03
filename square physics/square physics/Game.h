@@ -24,12 +24,17 @@ public:
 
 	float time = (1.0f / 60.0f);
 
+	float timer = 0;
+
 	float restitiution = 0.8;
 
 	sf::Vector2f Acceleration{ 0.0,0.0 };
 
 	sf::Vector2f normVel{ 0.0f,0.0f };
 
+	sf::Text timerText;
+
+	sf::Font Font;
 
 	/// <summary>
 	/// @brief the main game loop.
